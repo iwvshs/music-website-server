@@ -38,6 +38,8 @@ build/
 !.env.example
 src/main/resources/application-local.yml
 src/main/resources/application-dev.local.yml
+src/main/resources/application-dev.yml
+!src/main/resources/application-dev.example.yml
 
 ### Data dumps ###
 sql/vibe_music.sql

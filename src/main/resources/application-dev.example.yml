@@ -1,0 +1,24 @@
+local:
+  datasource:
+    database: vibe_music
+    host: localhost
+    port: 3306
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: please_set_db_password
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: please_set_redis_password
+
+  mail:
+    host: smtp.qq.com
+    username: please_set_mail_username
+    password: please_set_mail_password
+
+  minio:
+    endpoint: http://localhost:9000
+    accessKey: please_set_minio_access_key
+    secretKey: please_set_minio_secret_key
+    bucket: vibe-music-data

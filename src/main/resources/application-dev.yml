@@ -1,0 +1,13 @@
+local:
+  datasource:
+    database: ${DB_NAME:vibe_music}
+    host: ${DB_HOST:localhost}
+    port: ${DB_PORT:3306}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:please_set_db_password}
+
+  mail:
+    host: ${MAIL_HOST:smtp.qq.com}
+    username: ${MAIL_USERNAME:please_set_mail_username}
+    password: ${MAIL_PASSWORD:please_set_mail_password}

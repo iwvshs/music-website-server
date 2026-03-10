@@ -1,0 +1,76 @@
+spring:
+  profiles:
+    active: dev
+
+  datasource:
+    driver-class-name: ${local.datasource.driver-class-name}
+    url: jdbc:mysql://${local.datasource.host}:${local.datasource.port}/${local.datasource.database}
+    username: ${local.datasource.username}
+    password: ${local.datasource.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  data:
+    redis:
+      database: 1
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  cache:
+    redis:
+      time-to-live: 600000
+
+  mail:
+    host: ${local.mail.host}
+    username: ${local.mail.username}
+    password: ${local.mail.password}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+
+mybatis-plus:
+  type-aliases-package: cn.edu.seig.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      table-prefix: tb_
+
+role-path-permissions:
+  permissions:
+    ROLE_ADMIN:
+      - "/admin/"
+    ROLE_USER:
+      - "/user/"
+      - "/playlist/"
+      - "/artist/"
+      - "/song/"
+      - "/favorite/"
+      - "/comment/"
+      - "/banner/"
+      - "/feedback/"
+
+minio:
+  endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+  accessKey: ${MINIO_ACCESS_KEY:please_set_minio_access_key}
+  secretKey: ${MINIO_SECRET_KEY:please_set_minio_secret_key}
+  bucket: ${MINIO_BUCKET:vibe-music-data}

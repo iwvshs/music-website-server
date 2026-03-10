@@ -22,3 +22,23 @@ local:
     accessKey: please_set_minio_access_key
     secretKey: please_set_minio_secret_key
     bucket: vibe-music-data
+
+  oss:
+    enabled: false
+    endpoint: https://oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: please_set_oss_access_key_id
+    accessKeySecret: please_set_oss_access_key_secret
+    bucket: please_set_oss_bucket
+    publicDomain: https://please_set_oss_public_domain
+
+  migration:
+    minioToOss:
+      enabled: false
+      dryRun: true
+      failFast: false
+    urlPrefixReplace:
+      enabled: false
+      dryRun: true
+      failFast: false
+      oldPrefix: http://localhost:9000/vibe-music-data/
+      newPrefix: https://please_set_oss_public_domain/

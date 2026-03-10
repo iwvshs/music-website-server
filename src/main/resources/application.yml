@@ -74,3 +74,23 @@ minio:
   accessKey: ${local.minio.accessKey}
   secretKey: ${local.minio.secretKey}
   bucket: ${local.minio.bucket}
+
+oss:
+  enabled: ${local.oss.enabled:false}
+  endpoint: ${local.oss.endpoint:}
+  accessKeyId: ${local.oss.accessKeyId:}
+  accessKeySecret: ${local.oss.accessKeySecret:}
+  bucket: ${local.oss.bucket:}
+  publicDomain: ${local.oss.publicDomain:}
+
+migration:
+  minio-to-oss:
+    enabled: ${local.migration.minioToOss.enabled:false}
+    dry-run: ${local.migration.minioToOss.dryRun:true}
+    fail-fast: ${local.migration.minioToOss.failFast:false}
+  url-prefix-replace:
+    enabled: ${local.migration.urlPrefixReplace.enabled:false}
+    dry-run: ${local.migration.urlPrefixReplace.dryRun:true}
+    fail-fast: ${local.migration.urlPrefixReplace.failFast:false}
+    old-prefix: ${local.migration.urlPrefixReplace.oldPrefix:}
+    new-prefix: ${local.migration.urlPrefixReplace.newPrefix:}

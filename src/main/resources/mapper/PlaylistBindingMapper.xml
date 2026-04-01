@@ -2,4 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.seig.vibemusic.mapper.PlaylistBindingMapper">
 
+    <select id="getSongIdsByPlaylistId" resultType="java.lang.Long">
+        SELECT song_id
+        FROM tb_playlist_binding
+        WHERE playlist_id = #{playlistId}
+        ORDER BY song_id
+    </select>
+
+    <select id="getBoundSongIds" resultType="java.lang.Long">
+        SELECT song_id
+        FROM tb_playlist_binding
+        WHERE playlist_id = #{playlistId}
+          AND song_id IN
+        <foreach collection="songIds" item="songId" open="(" separator="," close=")">
+            #{songId}
+        </foreach>
+    </select>
+
+    <insert id="batchInsert">
+        INSERT INTO tb_playlist_binding (playlist_id, song_id)
+        VALUES
+        <foreach collection="songIds" item="songId" separator=",">
+            (#{playlistId}, #{songId})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByPlaylistId">
+        DELETE
+        FROM tb_playlist_binding
+        WHERE playlist_id = #{playlistId}
+    </delete>
+
+    <delete id="deleteByPlaylistIdAndSongIds">
+        DELETE
+        FROM tb_playlist_binding
+        WHERE playlist_id = #{playlistId}
+          AND song_id IN
+        <foreach collection="songIds" item="songId" open="(" separator="," close=")">
+            #{songId}
+        </foreach>
+    </delete>
+
 </mapper>

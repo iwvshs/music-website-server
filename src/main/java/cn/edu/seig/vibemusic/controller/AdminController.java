@@ -43,6 +43,8 @@ public class AdminController {
     @Autowired
     private IPlaylistService playlistService;
     @Autowired
+    private IPlaylistBindingService playlistBindingService;
+    @Autowired
     private MinioService minioService;
 
     /**
@@ -413,6 +415,50 @@ public class AdminController {
     @PutMapping("/updatePlaylist")
     public Result updatePlaylist(@RequestBody PlaylistUpdateDTO playlistUpdateDTO) {
         return playlistService.updatePlaylist(playlistUpdateDTO);
+    }
+
+    /**
+     * 获取歌单已绑定的歌曲 ID
+     *
+     * @author Tanh
+     * @since 2026-03-22
+     */
+    @GetMapping("/getPlaylistSongIds/{id}")
+    public Result<List<Long>> getPlaylistSongIds(@PathVariable("id") Long playlistId) {
+        return playlistBindingService.getPlaylistSongIds(playlistId);
+    }
+
+    /**
+     * 追加绑定歌曲到歌单
+     *
+     * @author Tanh
+     * @since 2026-03-22
+     */
+    @PostMapping("/bindSongsToPlaylist")
+    public Result bindSongsToPlaylist(@RequestBody PlaylistSongBindingDTO playlistSongBindingDTO) {
+        return playlistBindingService.bindSongsToPlaylist(playlistSongBindingDTO);
+    }
+
+    /**
+     * 覆盖歌单歌曲绑定关系
+     *
+     * @author Tanh
+     * @since 2026-03-22
+     */
+    @PutMapping("/replacePlaylistSongs")
+    public Result replacePlaylistSongs(@RequestBody PlaylistSongBindingDTO playlistSongBindingDTO) {
+        return playlistBindingService.replacePlaylistSongs(playlistSongBindingDTO);
+    }
+
+    /**
+     * 解绑歌单中的歌曲
+     *
+     * @author Tanh
+     * @since 2026-03-22
+     */
+    @DeleteMapping("/unbindSongsFromPlaylist")
+    public Result unbindSongsFromPlaylist(@RequestBody PlaylistSongBindingDTO playlistSongBindingDTO) {
+        return playlistBindingService.unbindSongsFromPlaylist(playlistSongBindingDTO);
     }
 
     /**
